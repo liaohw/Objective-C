@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "30_Extension.h"
 
-// Foundation举例
+// 
 
 @implementation NSString (Extension)
 
