@@ -27,7 +27,7 @@ int main(int argc, const char* argv[])
     Student* stu = [[Student alloc] init];
     [stu study];    
 
-    //判断wearNeat方法是否在Student类中定义,如果定义了，才调用
+    //判断方法是否在Student类中定义,如果定义了，才调用
     if ([stu respondsToSelector:@selector(eat)]) {
         [stu eat];
     }
