@@ -45,8 +45,8 @@
 
 int main(int argc, const char* argv[])
 {
-	NSLog(@"-------------------使用类目/邮箱验证");
-	//使用类目，为现有的类NSString扩展方法，是新方法成为类的一部分，且子类也能继承
+    NSLog(@"-------------------使用类目/邮箱验证");
+    //使用类目，为现有的类NSString扩展方法，是新方法成为类的一部分，且子类也能继承
     NSString *s = @"jack@qq.com";
     BOOL isEmail = [s validateEmail];
     if (isEmail) {
@@ -58,14 +58,14 @@ int main(int argc, const char* argv[])
     //优先调用类目覆写的intValue方法
     int len = [s intValue];
     NSLog(@"len=%d",len);
-	/*	类目的不足:
-		1.类目还可以覆写现有类的方法。覆写后，原始方法则无法调用。
-		2.类目不能为类扩展实例属性。
-	*/
+    /*    类目的不足:
+        1.类目还可以覆写现有类的方法。覆写后，原始方法则无法调用。
+        2.类目不能为类扩展实例属性。
+    */
     
-	NSLog(@"-------------------使用类目/延展的使用");    
-	Person *p = [[Person alloc] init];
+    NSLog(@"-------------------使用类目/延展的使用");    
+    Person *p = [[Person alloc] init];
     [p work];
 
-	return 0;
+    return 0;
 }

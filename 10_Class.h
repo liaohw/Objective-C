@@ -2,10 +2,10 @@
 
 @interface CUser : NSObject
 {
-	//默认protected
+    //默认protected
 @protected
-	NSInteger _user_id;
-	NSString* _name;
+    NSInteger _user_id;
+    NSString* _name;
 }
 - (id)initWithName:(NSString*) name;
 - (id)initWithName:(NSString*) name withId:(NSInteger) user_id;
@@ -22,7 +22,7 @@
 
 @interface CUserProm : CUser
 {
-	NSInteger _prod_id;
+    NSInteger _prod_id;
 }
 - (id)initWithId:(NSInteger) prod_id;
 - (void)showInfo;

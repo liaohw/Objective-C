@@ -4,6 +4,8 @@
 
 int main(int argc, const char* argv[])
 {
+    NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
+    
     NSArray *array1 = [NSArray arrayWithObjects:@"ar10",@"ar11", nil];
     NSArray *array2 = [NSArray arrayWithObjects:@"ar20",@"ar21", nil];
     
@@ -21,7 +23,7 @@ int main(int argc, const char* argv[])
     NSArray *array3 = [dic1 objectForKey:@"key1"];
     NSLog(@"4.key1:%@",array3);
 
-	/*________________________可变字典(NSMutableDictionary)___________________________*/
+    /*________________________可变字典(NSMutableDictionary)___________________________*/
 
     NSMutableDictionary *mdic1 = [[NSMutableDictionary alloc] initWithCapacity:3];
     [mdic1 setObject:array1 forKey:@"m_key"];
@@ -34,16 +36,17 @@ int main(int argc, const char* argv[])
         NSLog(@"6.name:%@,score:%@",name,score);
     }
     
-	return 0;
+    [autoreleasePool release];
+    return 0;
 }
 
 
-// 2016-06-24 17:55:35.176 NSDictionary[7308] 1.count:2
-// 2016-06-24 17:55:35.177 NSDictionary[7308] 2.allkeys:(key2, key1)
-// 2016-06-24 17:55:35.177 NSDictionary[7308] 3.allvalues:((ar20, ar21), (ar10, ar11))
-// 2016-06-24 17:55:35.177 NSDictionary[7308] 4.key1:(ar10, ar11)
-// 2016-06-24 17:55:35.178 NSDictionary[7308] 5.mdic1:{key1 = (ar10, ar11); key2 = (ar20, ar21); "m_key" = (ar10, ar11); "m_key2" = (ar20, ar21); }
-// 2016-06-24 17:55:35.178 NSDictionary[7308] 6.name:m_key,score:(ar10, ar11)
-// 2016-06-24 17:55:35.178 NSDictionary[7308] 6.name:key1,score:(ar10, ar11)
-// 2016-06-24 17:55:35.178 NSDictionary[7308] 6.name:key2,score:(ar20, ar21)
-// 2016-06-24 17:55:35.178 NSDictionary[7308] 6.name:m_key2,score:(ar20, ar21)
+// 1.count:2
+// 2.allkeys:(key2, key1)
+// 3.allvalues:((ar20, ar21), (ar10, ar11))
+// 4.key1:(ar10, ar11)
+// 5.mdic1:{key1 = (ar10, ar11); key2 = (ar20, ar21); "m_key" = (ar10, ar11); "m_key2" = (ar20, ar21); }
+// 6.name:m_key,score:(ar10, ar11)
+// 6.name:key1,score:(ar10, ar11)
+// 6.name:key2,score:(ar20, ar21)
+// 6.name:m_key2,score:(ar20, ar21)

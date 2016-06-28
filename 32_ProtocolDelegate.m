@@ -57,7 +57,7 @@ int main(int argc, const char* argv[])
     //NSRunLoop 让程序始终处于运行状态
     [[NSRunLoop currentRunLoop] run];
 
-	return 0;
+    return 0;
 }
 
 //结果：

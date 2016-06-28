@@ -35,7 +35,7 @@ int main(int argc, const char* argv[])
         NSLog(@"Student is no drink!");
     }
 
-	return 0;
+    return 0;
 }
 
 // 2016-06-27 15:22:38.960 31_Protocol[712] Student need study!

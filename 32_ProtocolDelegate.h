@@ -7,7 +7,7 @@
 
 
 @interface Student : NSObject<_protocolDelegate> {
-	NSInteger _times;
+    NSInteger _times;
 }
 - (id)initWithTimes:(NSInteger)times;
 @end

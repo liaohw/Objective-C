@@ -3,6 +3,7 @@
 // 
 int main(int argc, const char* argv[])
 {
+    NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
     NSLog(@"----------------NSNumber:");
     NSNumber *intNumber = [NSNumber numberWithInt:100];
     NSNumber *floatNumber = [NSNumber numberWithFloat:9.8f];
@@ -42,5 +43,19 @@ int main(int argc, const char* argv[])
         }
     }
 
-	return 0;
+    [autoreleasePool release];
+    return 0;
 }
+
+// ----------------NSNumber:
+// array=(100, "9.8", 123456789, 1)
+// intNumber=100
+// floatNumber=9.80
+// boolNumber=1
+// ----------------NSValue:
+// user2._id=1001
+// ----------------NSNull:
+// ("<null>", "<null>")
+// item is null,continue!
+// item is null,continue!
+// 

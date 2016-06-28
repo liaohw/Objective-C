@@ -3,6 +3,7 @@
 // 
 int main(int argc, const char* argv[])
 {
+    NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
     NSString* user = @"john";
     NSString* user2 = @"jack";
     NSSet* set1 = [[NSSet alloc] initWithObjects:user,user2, nil];
@@ -15,5 +16,9 @@ int main(int argc, const char* argv[])
 
     // NSMutableSet
     
-	return 0;
+    [autoreleasePool release];
+    return 0;
 }
+
+// set3 size : 3
+// set3 anyObject : john
