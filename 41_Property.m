@@ -20,6 +20,25 @@
 
 @end
 
+
+// @property并不只是可以生成getter和setter方法，它还可以做内存管理，
+// 如：
+// 	@property(nonatomic, retain) UITextField *userName;    //1
+// 	@property(nonatomic, retain,readwrite) UITextField *userName;  //2
+
+// 	@property(atomic, retain) UITextField *userName;  //3
+// 	@property(retain) UITextField *userName;  //4
+
+// 	@property(atomic,assign) int i;         // 5
+// 	@property(atomic) int i;         //6
+// 	@property int i;               //7
+// 上面的代码1和2是等价的，3和4是等价的，5,6,7是等价的。
+// （也就是说atomic是默认行为，assign是默认行为，readwrite是默认行为）
+
+// @synthesize去让编译器生成代码，那么atomic和nonatomic生成的代码是不一样的。
+// 如果使用atomic，如其名，它会保证每次getter和setter的操作都会正确的执行完毕，而不用担心其它线程在你get的时候set，可以说保证了某种程度上的线程安全。
+// nonatomic比atomic速度要快。
+
 int main(int argc, const char* argv[])
 {
     NSLog(@"----------------引用计数:");
