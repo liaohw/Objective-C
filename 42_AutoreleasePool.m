@@ -5,8 +5,9 @@
 @implementation Dog
 //自定义初始化方法
 - (id)initwithName:(NSString *)name{
-    self = [super init];
-    if (self != nil) {
+    // self = [super init];
+    // if (self != nil) {
+    if( self = [super init]) {
         [_name release];
         _name = [name retain];
     }
@@ -36,8 +37,9 @@
 
 @implementation Person
 - (id)initWithDogname:(NSString *)dogName {
-    self = [super init];
-    if (self != nil) {
+    // self = [super init];
+    // if (self != nil) {
+    if ( self = [super init]){
         _dog = [[Dog alloc] initwithName:dogName];
     }
     return self;
