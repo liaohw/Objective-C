@@ -45,8 +45,18 @@ Objective-C 开发笔记
 比如：Student遵循_protocolDelegate协议，实现work方法；Student委托给Teacher，Teacher通过call_work使Student执行协议方法work
 
 ## 类属性
+
+### 初始化
+* 如果实现一个初始化程序,确保调用超类的初始化；
+* 如果超类的初始化不止一个方法,选择一个指定初始值设定；
+
+### 属性
 * @property与@synthesize配对使用，用来让编译器自动生成与数据成员同名的方法声明
 * @property并不只是可以生成getter和setter方法，它还可以做内存管理
+
+### 方法
+* 重载方法description，实现类指针打印的描述字符串；
+* 单例模式：重载实现类方法allocWithZone，（实现限制方法，限制这个类只能创建一个对象）
 
 ## 内存管理
 * init\alloc\copy\retain之后需要有相互对应的release
@@ -63,9 +73,6 @@ Objective-C 开发笔记
 浅拷贝和深拷贝：
 * 浅拷贝值复制对象本身，对象里的属性、包含的对象不做复制（默认）
 * 深拷贝则既复制对象本身，对象的属性也会复制一份
-
-### 单例模式
-重载实现类方法allocWithZone，（实现限制方法，限制这个类只能创建一个对象）
 
 ## 数据持久化 归档
 * NSKeyedArchiver

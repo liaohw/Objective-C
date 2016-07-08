@@ -37,6 +37,13 @@
 + (void)sayHi{
     NSLog(@"CUser say hi!");
 }
+
+//如果未实现：<CUser: 0x2a37fa8>
+//重载实现：user description : jack, user id : 998
+- (NSString*) description{
+    NSString* desc = [NSString stringWithFormat:@"user description : %@, user id : %d",_name,_user_id];
+    return desc;
+}
 @end
 
 
@@ -65,6 +72,7 @@ int main(int argc, const char* argv[])
     [user setName:@"jack"];        //id user 的话这里会有问题
     [user setUserId:998];
     [user showInfo];
+    NSLog(@"%@",user);
 
     NSLog(@"**********************");
     CUser* user2 = [[CUser alloc] initWithName:@"eva" withId:666];
@@ -88,6 +96,7 @@ int main(int argc, const char* argv[])
 // -------run begin
 // CUser say hi!
 // user showInfo : jack, user id : 998
+// user description : jack, user id : 998
 // **********************
 // user showInfo : eva, user id : 666
 // user showInfo : test name, user id : 666
