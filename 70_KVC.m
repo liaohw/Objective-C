@@ -131,6 +131,11 @@ int main(int argc, const char* argv[])
     [garage addCar: makeCar (@"现代", 88, 100000)];
     [garage print];
 
+    NSLog(@"----------------KVC----------------------------");
+    NSLog (@"min: %@", [garage valueForKeyPath: @"cars.@min.price"]);
+    NSLog (@"max: %@", [garage valueForKeyPath: @"cars.@max.price"]);
+    NSLog (@"avg: %.2f", [[garage valueForKeyPath: @"cars.@avg.price"] floatValue]);
+
     [autoreleasePool release];
     return 0;
 }
