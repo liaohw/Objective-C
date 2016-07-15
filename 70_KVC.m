@@ -39,7 +39,7 @@
     if (self = [super init]) {
         self.name = @"Mini Car";
         engine = [[Engine alloc] init];
-        price = 88;
+        price = 88888;
     }
     return (self);
 } // init
@@ -64,7 +64,7 @@
 
 - (NSString *) description {
     NSString *desc;
-    desc = [NSString stringWithFormat: @"%@ %@  %d",
+    desc = [NSString stringWithFormat: @"%@,    %@,    %d",
             name, engine, price];
     return desc;
 } // description
@@ -110,7 +110,7 @@ Car *makeCar (NSString *name, int horsepower,NSInteger price) {
 int main(int argc, const char* argv[])
 {
     NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];  
-    NSLog(@"----------------KVC----------------------------");
+    NSLog(@"----------------KVC键值----------------------------");
     Car *car = [[Car alloc] init];
     [car print];
 
@@ -126,16 +126,62 @@ int main(int argc, const char* argv[])
     Garage *garage = [[Garage alloc] init];
     garage.name = @"HangZhou's Garage";
 
+    [garage addCar: makeCar (@"宝马", 88, 100000)];
     [garage addCar: makeCar (@"宝马", 99, 110000)];
     [garage addCar: makeCar (@"奔驰", 100, 200000)];
-    [garage addCar: makeCar (@"现代", 88, 100000)];
     [garage print];
 
-    NSLog(@"----------------KVC----------------------------");
-    NSLog (@"min: %@", [garage valueForKeyPath: @"cars.@min.price"]);
-    NSLog (@"max: %@", [garage valueForKeyPath: @"cars.@max.price"]);
-    NSLog (@"avg: %.2f", [[garage valueForKeyPath: @"cars.@avg.price"] floatValue]);
+    NSLog(@"----------------KVC运算----------------------------");
+    //需要解析字符串路径，所以性能慢（左侧指定集合的运算）
+    NSLog (@"cars.price min: %@", [garage valueForKeyPath: @"cars.@min.price"]);
+    NSLog (@"cars.price max: %@", [garage valueForKeyPath: @"cars.@max.price"]);
+    NSLog (@"cars.price sum: %@", [garage valueForKeyPath: @"cars.@sum.price"]);
+    NSLog (@"cars.price avg: %.2f", [[garage valueForKeyPath: @"cars.@avg.price"] floatValue]);
+    NSArray *keyName = [garage valueForKeyPath: @"cars.@distinctUnionOfObjects.name"];
+    for(NSString* _s in keyName){
+        NSLog(@"cars.distinct : %@",_s);    
+    }
+
+    NSLog(@"----------------KVC批处理----------------------------");
+    NSArray *keys = [NSArray arrayWithObjects: @"name", @"price",nil];
+    NSDictionary *carValues = [car dictionaryWithValuesForKeys: keys];
+    NSLog (@"ValuesForKeys : %@", carValues);
+
+    NSDictionary *newValues = [NSDictionary dictionaryWithObjectsAndKeys:
+        @"大众", @"name",
+        [[Engine alloc] init], @"engine",
+        [NSNumber numberWithInt:66666], @"price",
+        nil];
+    [car setValuesForKeysWithDictionary: newValues];
+    NSLog (@"ObjectsAndKeys : %@", car);
+    [car setValue:[NSNull null] forKey: @"name"];   //[NSNull null] => <null> 表示NSNull对象
+    [car setValue:nil forKey: @"engine"];           //nil => (null) 表示nil值
+    NSLog (@"setValue/forKey : %@", car);
 
     [autoreleasePool release];
     return 0;
 }
+
+
+ // ----------------KVC键值----------------------------
+ // name:Mini Car,price:88888
+ // valueForKey'name : Mini Car
+ // valueForKey'name : polo car
+ // valueForKeyPath'engine.horsepower : 1001
+ // ----------------KVC----------------------------
+ // HangZhou's Garage:
+ //     宝马,    HP:88,    100000
+ //     宝马,    HP:99,    110000
+ //     奔驰,    HP:100,    200000
+ // ----------------KVC运算----------------------------
+ // cars.price min: 100000
+ // cars.price max: 200000
+ // cars.price sum: 410000
+ // cars.price avg: 136666.67
+ // cars.distinct : 奔驰
+ // cars.distinct : 宝马
+ // ----------------KVC批处理----------------------------
+ // ValuesForKeys : {name = "polo car"; price = 88888; }
+ // ObjectsAndKeys : 大众,    HP:999,    66666
+ // setValue/forKey : <null>,    (null),    66666
+ // ----------------KVC未定义键值----------------------------
