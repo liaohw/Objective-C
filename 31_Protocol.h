@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+// _protocol协议继承NSObject协议
 @protocol _protocol <NSObject>
 @required
 - (void)work;
