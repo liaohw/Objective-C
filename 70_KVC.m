@@ -158,6 +158,19 @@ int main(int argc, const char* argv[])
     [car setValue:nil forKey: @"engine"];           //nil => (null) 表示nil值
     NSLog (@"setValue/forKey : %@", car);
 
+    NSLog(@"----------------NSPredicate谓词----------------------------");
+    NSPredicate *predicate;
+    predicate = [NSPredicate predicateWithFormat: @"name == 'polo car'"];
+    NSLog (@"name == 'polo car'：%s", ([predicate evaluateWithObject: car]) ? "YES" : "NO");
+    predicate = [NSPredicate predicateWithFormat: @"price == 66666"];
+    NSLog (@"price == 66666：%s", ([predicate evaluateWithObject: car]) ? "YES" : "NO");
+
+    predicate = [NSPredicate predicateWithFormat: @"price > 100 and engine.horsepower > 90"];
+    NSArray *results = [garage->cars filteredArrayUsingPredicate: predicate];
+    for(Car* _s in results){
+        NSLog(@"cars.filtered : %@",_s);    
+    }
+
     [autoreleasePool release];
     return 0;
 }

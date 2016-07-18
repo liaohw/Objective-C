@@ -20,6 +20,7 @@
 
 
 @interface Garage : NSObject {
+@public
     NSString *name;
     NSMutableArray *cars;
 }
