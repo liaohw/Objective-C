@@ -1,7 +1,8 @@
 #import <Foundation/Foundation.h>
-#import "30_Extension.h"
+#import "30_NSString+validateEmail.h"
 
-// 
+// 类目
+// 使用类目就是为现有的类添加扩展方法，且子类也能继承
 
 @implementation NSString (Extension)
 
